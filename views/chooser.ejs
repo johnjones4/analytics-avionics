@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <form method="post" class="container">
+      <div class="form-group">
+        <label for="accounts">Accounts</label>
+        <select id="accounts" name="accounts" class="form-control">
+          <option></option>
+          <% options.accounts.forEach(function(account) { %>
+            <option value="<%= account.id %>" <%= account.id == selected.account ? 'selected' : null %>><%= account.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="properties">Properties</label>
+        <select id="properties" name="properties" class="form-control">
+          <option></option>
+          <% options.properties.forEach(function(property) { %>
+            <option value="<%= property.id %>" <%= property.id == selected.property ? 'selected' : null %>><%= property.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="profiles">Profiles</label>
+        <select id="profiles" name="profiles" class="form-control">
+          <option></option>
+          <% options.profiles.forEach(function(profile) { %>
+            <option value="<%= profile.id %>" <%= profile.id == selected.profile ? 'selected' : null %>><%= profile.name %></option>
+          <% }); %>
+        </select>
+      </div>
+    </form>
+    <script>
+      var selects = document.querySelectorAll('select');
+      for(var i = 0; i < selects.length; i++) {
+        selects[i].addEventListener('change',function() {
+          document.querySelector('form').submit();
+        });
+      }
+    </script>
+  </body>
+</html>
