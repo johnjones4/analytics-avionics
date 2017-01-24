@@ -61,6 +61,10 @@ const socketServer = net.createServer(function(socket) {
       socket.write('0\n');
     }
   },5000);
+  socket.on('error',function() {
+    console.log('Socket closed')
+    clearInterval(interval);
+  });
   socket.on('close',function() {
     console.log('Socket closed')
     clearInterval(interval);
